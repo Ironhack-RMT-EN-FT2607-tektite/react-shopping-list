@@ -11,26 +11,28 @@ function ShoppingPage() {
 
   const [ allProducts, setAllProducts ] = useState(testProducts) 
   //* initial state. change to empty array when finished with add functionality
+  const [ isFormShowing, setIsFormShowing ] = useState(false)
+
+  // const addProduct = (newProduct) => {
+  //   setAllProducts([...allProducts, newProduct])
+  // }
 
   return (
     <>
 
       <h1>Shopping List!</h1>
 
+      <button onClick={() => setIsFormShowing(!isFormShowing)}>Toggle Add Form</button>
+
+      {/* { isFormShowing ? <AddForm addProduct={addProduct}/> : null } */}
+      {/* { isFormShowing ? <AddForm allProducts={allProducts} setAllProducts={setAllProducts}/> : null } */}
+      { isFormShowing ? <AddForm setAllProducts={setAllProducts}/> : null }
+
       {/* //* all elements of the shopping list will be here */}
-      {allProducts.map((eachProduct, index) => {
-        return (
-          <div className="product-card" key={index}>
-            <h3>{eachProduct.name}</h3>
-            <p>{eachProduct.price}€</p>
-            <p>{eachProduct.isPurchased === true ? "✅" : "🟡"}</p>
-            <button>Buy</button>
-          </div>
-        )
-      })}
+      <ProductList allProducts={allProducts}/>
 
     </>
   )
 }
 
-export default ShoppingPage
+export default ShoppingPage 
