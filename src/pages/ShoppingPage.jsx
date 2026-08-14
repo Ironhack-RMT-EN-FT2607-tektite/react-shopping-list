@@ -11,6 +11,8 @@ function ShoppingPage() {
 
   const [ allProducts, setAllProducts ] = useState(testProducts) 
   //* initial state. change to empty array when finished with add functionality
+  const [ query, setQuery ] = useState("")
+
   const [ isFormShowing, setIsFormShowing ] = useState(false)
 
   // const addProduct = (newProduct) => {
@@ -28,8 +30,10 @@ function ShoppingPage() {
       {/* { isFormShowing ? <AddForm allProducts={allProducts} setAllProducts={setAllProducts}/> : null } */}
       { isFormShowing ? <AddForm setAllProducts={setAllProducts}/> : null }
 
+      <SearchBar query={query} setQuery={setQuery}/>
+
       {/* //* all elements of the shopping list will be here */}
-      <ProductList allProducts={allProducts}/>
+      <ProductList allProducts={allProducts} query={query} setAllProducts={setAllProducts}/>
 
     </>
   )

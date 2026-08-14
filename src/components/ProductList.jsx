@@ -9,8 +9,12 @@ function ProductList(props) {
 
       {/* //* the list of the products will be here */}
       {/* //* it will render a ProductCard for each product in the list */}
-      {props.allProducts.map((eachProduct, index) => {
-        return <ProductCard key={index} {...eachProduct} />
+      {props.allProducts
+      .filter((eachProduct) => {
+        return eachProduct.name.startsWith(props.query)
+      })
+      .map((eachProduct, index) => {
+        return <ProductCard key={index} {...eachProduct} setAllProducts={props.setAllProducts} index={index}/>
       })}
 
     </div>
